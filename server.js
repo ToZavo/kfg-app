@@ -23,11 +23,6 @@ app.get("/api/spad", (req, res) => {
 
 
 app.get("/api/affirmation", (req, res) => {
-    const today = new Date();
-
-    const startOfYear = new Date(today.getFullYear(), 0, 0);
-    const diff = today - startOfYear;
-    const oneDay = 1000 * 60 * 60 * 24;
     const dayOfYear = Math.floor(diff / oneDay);
 
     const affirmationIndex = dayOfYear % affirmations.length;
