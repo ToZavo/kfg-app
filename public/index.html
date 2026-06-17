@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JFT Journal</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main class="app">
+        <h1>JFT Journal</h1>
+        <p>JFT, shitbrick. Feel free to write about anything that comes to mind.</p>
+        <section id="homeScreen" class="screen active">
+            <button id="jftBtn">Just For Today</button>
+            <button id="spadBtn">Spiritual Principle a Day</button>
+        </section>
+
+        <div id="readingDisplay"></div>
+
+        <textarea id="journalEntry" placeholder="What's that look like in your life, dicknips?..."></textarea>
+        <button id="saveEntryBtn">Save Entry</button>
+        <p id="saveStatus"></p>
+
+        <section class="card">
+            <h2>Clean Time</h2>
+            <input type="date" id="cleanDate"/>
+            <button id="saveDateBtn">Save Clean Date</button>
+            <p id="cleanTimeDisplay"></p>
+        </section>
+
+        <section class="card">
+           <h2>Affirmation</h2>
+           <div id="affirmationText"></div>
+        </section>
+
+        
+    </main>
+
+
+    <script src="readings.js"></script>
+
+    <script src="index.js"></script>
+</body>
+</html>
