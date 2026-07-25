@@ -13,3 +13,13 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
+def save_entry(date, content, clean_days):
+    conn = sqlite3.connect("journal.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO entries (date, content, clean_days)
+        VALUES (?, ?, ?)
+    """, (date, content, clean_days))
+    conn.commit()
+    conn.close()
