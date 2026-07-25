@@ -16,3 +16,8 @@ def add_entry():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/entries", methods=["GET"])
+def get_entries():
+    entries = get_all_entries()
+    return jsonify(entries)
