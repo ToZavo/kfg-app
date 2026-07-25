@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-from database import init_db, save_entry
+from database import init_db, save_entry, get_all_entries
+
 
 app = Flask(__name__)
 init_db()
