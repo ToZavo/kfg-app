@@ -15,10 +15,10 @@ def add_entry():
     save_entry(data["date"], data["content"], data["clean_days"])
     return jsonify({"status": "saved"})
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
 @app.route("/entries", methods=["GET"])
 def get_entries():
     entries = get_all_entries()
     return jsonify(entries)
+
+if __name__ == "__main__":
+    app.run(debug=True)
