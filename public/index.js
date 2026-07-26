@@ -126,7 +126,7 @@ saveEntryBtn.addEventListener("click", async () => {
     const cleanDays = cleanDate 
     ? Math.floor((new Date().getTime() - new Date(cleanDate).getTime()) / (1000 * 60 * 60 * 24)) : 0;
 
-    await fetch("http://127.0.0.1:5000/entry", {
+    await fetch("http://127.0.0.1:5000/entryƒ", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -156,7 +156,7 @@ function showScreen(screen) {
 //=================================
 const affirmationText = document.querySelector("#affirmationText");
 async function loadAffirmation() {
-    const response = await fetch("/api/affirmation");
+    const response = await fetch("http://127.0.0.1:5000/api/affirmation");
     const data = await response.json();
 
     affirmationText.textContent = data.affirmation;
