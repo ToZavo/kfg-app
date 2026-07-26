@@ -23,15 +23,6 @@ const formattedDate = today.toLocaleDateString("en-US", {
     year: "numeric"
 });
 
-//=================================
-// JOURNAL STORAGE
-//=================================
-const savedJournalEntry = localStorage.getItem("journalEntry");
-
-if (savedJournalEntry) {
-    journalEntry.value = savedJournalEntry;
-}
-
 
 //=================================
 // CLEAN TIME
@@ -130,10 +121,22 @@ spadBtn.addEventListener("click", () => {
 
 });
 
-saveEntryBtn.addEventListener("click", () => {
-    localStorage.setItem("journalEntry", journalEntry.value);
+saveEntryBtn.addEventListener("click", async () => {
+    const cleanDate = localStorage.getItem("cleanDate");
+    const cleanDays = cleanDate 
+    ? Math.floor((new Date().getTime() - new Date(cleanDate).getTime()) / (1000 * 60 * 60 * 24)) : 0;
 
-    saveStatus.textContent = "I got you, Big Dog."; 
+    await fetch("http://127.0.0.1:5000/entry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            date: formattedDate,
+            content: journalEntry.value,
+            clean_days: cleanDays
+        }),
+    });
+
+    saveStatus.textContent = "I got you, Big Dog";
 });
 
 
@@ -160,3 +163,18 @@ async function loadAffirmation() {
 }
 
 loadAffirmation();
+
+//=================================
+// LOAD LATEST JOURNAL ENTRY
+//=================================
+
+async function loadLatestEntry() {
+    const response = await fetch("http://127.0.0.1:5000/entries");
+    const entries = await response.json();
+
+    if (entries.length > 0) {
+        journalEntry.value = entries[entries.length - 1].content;
+    }
+}
+
+loadLatestEntry();
