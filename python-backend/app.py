@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify
 from database import init_db, save_entry, get_all_entries
+from flask_cors import CORS
 
-
-app = Flask(__name__)
+app = Flask(__name__)  # Allow requests from the React frontend
+CORS(app, origins=["http://127.0.0.1:5500"])  # Allow requests from the React frontend  
 init_db()
 
 @app.route("/")

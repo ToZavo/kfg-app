@@ -26,8 +26,9 @@ def save_entry(date, content, clean_days):
 
 def get_all_entries():
     conn = sqlite3.connect("journal.db")
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM entries")
     entries = cursor.fetchall()
     conn.close()
-    return entries
+    return [dict(row) for row in entries]
