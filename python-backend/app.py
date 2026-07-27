@@ -8,7 +8,7 @@ init_db()
 
 @app.route("/")
 def home():
-    return "Backend is running!"
+    return app.send_static_file("index.html")
 
 @app.route("/entry", methods=["POST"])
 def add_entry():
