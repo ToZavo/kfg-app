@@ -100,3 +100,32 @@ button:hover {
 #readingDisplay p {
     white-space: pre-wrap;
 }
+
+@media (max-width: 600px) {
+    .app {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .tagline {
+        margin-bottom: 1.25rem;
+    }
+
+    .card {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    textarea {
+        min-height: 130px;
+    }
+
+    button {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-size: 1rem;
+    }
+}
