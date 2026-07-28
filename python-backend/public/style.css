@@ -129,3 +129,18 @@ button:hover {
         font-size: 1rem;
     }
 }
+
+#homeScreen button {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#cleanDate {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    min-width: 0;
+}
