@@ -1,34 +1,42 @@
-import sqlite3
+import op
+import psycopg2
+import psycopg2.extras
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+def get_connection():
+    return psycopg2.connect(DATABASE_URL)
 
 def init_db():
-    conn = sqlite3.connect("journal.db") # open or creates database file
+    conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS entries (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             date TEXT NOT NULL,
             content TEXT NOT NULL,
             clean_days INTEGER
         )
     """)
     conn.commit()
+    cursor.close()
     conn.close()
 
 def save_entry(date, content, clean_days):
-    conn = sqlite3.connect("journal.db")
+    conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
         INSERT INTO entries (date, content, clean_days)
-        VALUES (?, ?, ?)
+        VALUES (%s, %s, %s)
     """, (date, content, clean_days))
     conn.commit()
+    cursor.close()
     conn.close()
 
 def get_all_entries():
-    conn = sqlite3.connect("journal.db")
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM entries")
+    conn = get_connection()
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     entries = cursor.fetchall()
+    cursor.close()
     conn.close()
     return [dict(row) for row in entries]
