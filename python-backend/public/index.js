@@ -126,7 +126,7 @@ saveEntryBtn.addEventListener("click", async () => {
     const cleanDays = cleanDate 
     ? Math.floor((new Date().getTime() - new Date(cleanDate).getTime()) / (1000 * 60 * 60 * 24)) : 0;
 
-    await fetch("/entryƒ", {
+    await fetch("/entry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
