@@ -36,6 +36,7 @@ def save_entry(date, content, clean_days):
 def get_all_entries():
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT * FROM entries ORDER BY id DESC")
     entries = cursor.fetchall()
     cursor.close()
     conn.close()
