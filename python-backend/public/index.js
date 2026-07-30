@@ -45,6 +45,9 @@ saveDateBtn.addEventListener("click", () => {
     updateCleanTime();
 });
 
+// Show clean time on page load
+updateCleanTime();
+
 function updateCleanTime() {
     const cleanDate = localStorage.getItem("cleanDate");
     
